@@ -1,0 +1,79 @@
+{
+  "fever": {
+    "Medicine": "- Paracetamol 500 mg: Every 6 hours for fever\n- Ibuprofen 400 mg: Alternative if no contraindications",
+    "Alternative": "- Cold compress on forehead\n- Sponge bath with lukewarm water",
+    "Lifestyle": "Hydration (8-10 glasses water), rest, light diet, avoid cold beverages.",
+    "Red Flags": "Fever >3 days, severe headache, rash, difficulty breathing, confusion.",
+    "Follow-Up": "Review in 48 hours if fever persists or worsens."
+  },
+  "diabetes": {
+    "Medicine": "- Metformin 500 mg: BD with meals\n- Glimepiride 1 mg: OD before breakfast (if needed)",
+    "Alternative": "- DPP-4 inhibitors (Sitagliptin) if metformin not tolerated\n- Insulin therapy for uncontrolled cases",
+    "Lifestyle": "Low glycemic diet, regular exercise (30 min daily), monitor blood glucose, weight management.",
+    "Red Flags": "Glucose >400 mg/dL, confusion, chest pain, excessive thirst, diabetic ketoacidosis signs.",
+    "Follow-Up": "HbA1c every 3 months, fasting glucose weekly, regular eye and foot checks."
+  },
+  "cold": {
+    "Medicine": "- Cetirizine 10 mg: Once daily for runny nose\n- Paracetamol 500 mg: For fever/body ache\n- Cough syrup: As needed",
+    "Alternative": "- Steam inhalation 3x daily\n- Ginger-honey tea\n- Saline nasal drops",
+    "Lifestyle": "Rest, hydration, warm fluids, avoid cold beverages, vitamin C rich foods.",
+    "Red Flags": "High fever, chest pain, difficulty breathing, symptoms >7 days.",
+    "Follow-Up": "Review if symptoms persist beyond 5 days or worsen."
+  },
+  "headache": {
+    "Medicine": "- Paracetamol 500 mg: Every 6-8 hours as needed\n- For migraine: Sumatriptan 50 mg at onset",
+    "Alternative": "- Ibuprofen 400 mg\n- Cold/warm compress\n- Rest in dark quiet room",
+    "Lifestyle": "Stress management, regular sleep schedule, hydration, avoid triggers (caffeine, bright lights).",
+    "Red Flags": "Sudden severe headache (thunderclap), vision changes, confusion, neck stiffness, seizures.",
+    "Follow-Up": "Review if headaches increase in frequency or severity. Consider CT/MRI if red flags present."
+  },
+  "hypertension": {
+    "Medicine": "- Amlodipine 5 mg: Once daily\n- Losartan 50 mg: Once daily (if needed)\n- Aspirin 75 mg: For cardiovascular protection",
+    "Alternative": "- Beta-blockers (Metoprolol) if tachycardia present\n- Diuretics (Hydrochlorothiazide) for fluid retention",
+    "Lifestyle": "Low salt diet (<5g/day), DASH diet, regular exercise, stress reduction, weight loss, limit alcohol.",
+    "Red Flags": "BP >180/120, severe headache, chest pain, shortness of breath, visual changes.",
+    "Follow-Up": "BP monitoring weekly, review medication in 4 weeks, annual cardiac assessment."
+  },
+  "asthma": {
+    "Medicine": "- Salbutamol inhaler: 2 puffs PRN for breathlessness\n- Beclomethasone inhaler: 2 puffs BD (controller)",
+    "Alternative": "- Montelukast 10 mg: Once daily\n- Nebulization with salbutamol in acute attack",
+    "Lifestyle": "Avoid triggers (dust, smoke, allergens), regular inhaler use, breathing exercises.",
+    "Red Flags": "Severe breathlessness, unable to speak, blue lips, no response to inhaler.",
+    "Follow-Up": "Peak flow monitoring, review in 2 weeks, pulmonary function tests annually."
+  },
+  "gastric": {
+    "Medicine": "- Pantoprazole 40 mg: Once daily before breakfast\n- Antacids: As needed for immediate relief",
+    "Alternative": "- Ranitidine 150 mg: BD if PPI not tolerated\n- Sucralfate for mucosal protection",
+    "Lifestyle": "Small frequent meals, avoid spicy/oily foods, no late night meals, reduce stress, avoid NSAIDs.",
+    "Red Flags": "Severe abdominal pain, vomiting blood, black stools, unexplained weight loss.",
+    "Follow-Up": "Review in 4 weeks. Consider endoscopy if symptoms persist or red flags present."
+  },
+  "allergy": {
+    "Medicine": "- Cetirizine 10 mg: Once daily\n- Hydrocortisone cream: For skin rash BD\n- In severe reaction: Epinephrine auto-injector",
+    "Alternative": "- Loratadine 10 mg if cetirizine causes drowsiness\n- Calamine lotion for itching",
+    "Lifestyle": "Identify and avoid allergen, keep antihistamines handy, wear medical alert bracelet if severe.",
+    "Red Flags": "Swelling of face/tongue, difficulty breathing, rapid pulse, anaphylaxis.",
+    "Follow-Up": "Allergy testing if recurrent. Emergency plan for severe allergies."
+  },
+  "arthritis": {
+    "Medicine": "- Ibuprofen 400 mg: TDS with food\n- Glucosamine supplements: For joint health",
+    "Alternative": "- Paracetamol for mild pain\n- Topical NSAIDs (Diclofenac gel)",
+    "Lifestyle": "Regular low-impact exercise (swimming, walking), weight management, physiotherapy, hot/cold therapy.",
+    "Red Flags": "Severe joint swelling, redness, warmth, inability to move joint, fever.",
+    "Follow-Up": "Review in 4-6 weeks. X-ray if severe. Consider rheumatologist referral."
+  },
+  "mental_health": {
+    "Medicine": "- For anxiety: Escitalopram 10 mg OD or Alprazolam 0.25 mg SOS\n- For depression: Sertraline 50 mg OD",
+    "Alternative": "- Cognitive Behavioral Therapy (CBT)\n- Mindfulness and meditation\n- Support groups",
+    "Lifestyle": "Regular exercise, good sleep hygiene, social support, stress management, avoid alcohol/drugs.",
+    "Red Flags": "Suicidal thoughts, self-harm, severe agitation, psychotic symptoms.",
+    "Follow-Up": "Weekly counseling sessions, medication review in 2 weeks. Psychiatric referral if severe."
+  },
+  "general": {
+    "Medicine": "- Symptomatic treatment based on presentation\n- Paracetamol 500 mg: As needed for pain/fever",
+    "Alternative": "- Rest and hydration\n- Monitor symptoms",
+    "Lifestyle": "Healthy diet, adequate rest, hydration, stress management.",
+    "Red Flags": "Persistent symptoms >3 days, worsening condition, new concerning symptoms.",
+    "Follow-Up": "Review in 48-72 hours if no improvement."
+  }
+}

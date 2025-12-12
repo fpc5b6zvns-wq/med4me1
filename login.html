@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Med4Me Login / Register</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg1:#1a1a2e;--bg2:#16213e;--accent:#0f4c75;--accent-light:#3282b8;--border:rgba(255,255,255,0.1)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Roboto',sans-serif;background:linear-gradient(135deg,var(--bg1),var(--bg2));color:#fff;display:flex;justify-content:center;align-items:center;min-height:100vh;padding:20px}
+#login-container{width:100%;max-width:480px}
+#login-box{background:rgba(255,255,255,0.05);backdrop-filter:blur(10px);padding:32px;border-radius:16px;border:1px solid var(--border);box-shadow:0 20px 60px rgba(0,0,0,0.4)}
+.logo{text-align:center;margin-bottom:18px}
+.logo h1{font-size:2em;margin-bottom:4px;background:linear-gradient(135deg,var(--accent-light),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.logo-subtitle{color:rgba(255,255,255,0.75);font-size:0.9em}
+.small-toggle{display:flex;justify-content:center;gap:12px;margin-bottom:18px}
+.toggle-btn{background:transparent;border:1px solid rgba(255,255,255,0.08);padding:8px 12px;border-radius:10px;color:#fff;cursor:pointer;transition:all 0.3s}
+.toggle-btn:hover{background:rgba(50,130,184,0.1)}
+.toggle-btn.active{background:linear-gradient(135deg,var(--accent-light),var(--accent));box-shadow:0 8px 20px rgba(50,130,184,0.25);border-color:transparent}
+.input-group{margin-bottom:14px}
+.input-group label{display:block;margin-bottom:6px;color:rgba(255,255,255,0.85);font-weight:500;font-size:0.9em}
+.input-group input{width:100%;padding:12px 14px;border-radius:10px;border:1px solid var(--border);background:rgba(255,255,255,0.06);color:#fff;font-size:1em;transition:all 0.3s}
+.input-group input:focus{outline:none;border-color:var(--accent-light);background:rgba(255,255,255,0.08)}
+.button-row{display:flex;gap:12px;margin-top:8px}
+button.primary{flex:1;padding:12px;border-radius:10px;border:none;background:linear-gradient(135deg,var(--accent-light),var(--accent));color:#fff;font-weight:700;cursor:pointer;transition:all 0.3s}
+button.primary:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 6px 20px rgba(50,130,184,0.4)}
+button.primary:disabled{opacity:0.5;cursor:not-allowed;transform:none}
+.small{padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.08);background:transparent;color:#fff;cursor:pointer;transition:all 0.3s}
+.small:hover{background:rgba(255,255,255,0.05)}
+.msg{margin-top:12px;padding:10px;border-radius:8px;font-size:0.9em;display:none}
+.msg.error{background:rgba(231,76,60,0.12);border:1px solid rgba(231,76,60,0.25);color:#ff8a8a;display:block}
+.msg.success{background:rgba(46,204,113,0.08);border:1px solid rgba(46,204,113,0.2);color:#9ff0b3;display:block}
+.remember-row{display:flex;align-items:center;gap:8px;margin-top:8px;color:rgba(255,255,255,0.85);font-size:0.9em}
+.remember-row input[type="checkbox"]{cursor:pointer}
+.demo-credentials{margin-top:14px;padding:12px;background:rgba(50,130,184,0.06);border-radius:8px;color:rgba(255,255,255,0.8);font-size:0.9em;text-align:center;border:1px solid rgba(50,130,184,0.15)}
+.demo-credentials strong{color:#3282b8}
+.loading{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,0.28);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;margin-left:8px}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<div id="login-container">
+  <div id="login-box">
+    <div class="logo">
+      <h1>🩺 Med4Me</h1>
+      <div class="logo-subtitle">Clinical Decision Support System</div>
+    </div>
+
+    <div class="small-toggle" role="tablist" aria-label="Auth mode">
+      <button id="login-mode" class="toggle-btn active" onclick="setMode('login')">Login</button>
+      <button id="register-mode" class="toggle-btn" onclick="setMode('register')">Register</button>
+    </div>
+
+    <form id="auth-form" onsubmit="submitAuth(event)">
+      <div class="input-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="Enter your username" required autocomplete="username">
+      </div>
+
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter your password" required autocomplete="current-password">
+      </div>
+
+      <div id="confirm-password-group" class="input-group" style="display:none">
+        <label for="confirm_password">Confirm Password</label>
+        <input type="password" id="confirm_password" placeholder="Repeat password">
+      </div>
+
+      <div class="remember-row">
+        <input type="checkbox" id="remember_me" />
+        <label for="remember_me">Remember me</label>
+      </div>
+
+      <div class="button-row" style="margin-top:12px">
+        <button type="submit" id="primary-btn" class="primary">Login</button>
+        <button type="button" class="small" onclick="clearRemember()">Clear saved</button>
+      </div>
+
+      <div id="msg" class="msg" role="status" aria-live="polite"></div>
+    </form>
+
+    <div class="demo-credentials">
+      Demo Account: <strong>admin</strong> / <strong>admin123</strong>
+    </div>
+  </div>
+</div>
+
+<script>
+const BASE_URL = 'http://localhost:5000';
+const MODE = { current: 'login' };
+
+function setMode(mode) {
+  MODE.current = mode;
+  document.getElementById('login-mode').classList.toggle('active', mode === 'login');
+  document.getElementById('register-mode').classList.toggle('active', mode === 'register');
+
+  const confirmGroup = document.getElementById('confirm-password-group');
+  const primaryBtn = document.getElementById('primary-btn');
+
+  if (mode === 'register') {
+    confirmGroup.style.display = 'block';
+    primaryBtn.textContent = 'Register';
+  } else {
+    confirmGroup.style.display = 'none';
+    primaryBtn.textContent = 'Login';
+  }
+  clearMessage();
+}
+
+// Auto-fill from localStorage if available
+window.addEventListener('DOMContentLoaded', () => {
+  const saved = localStorage.getItem('med4me_user');
+  if (saved) {
+    try {
+      const s = JSON.parse(saved);
+      if (s.username) document.getElementById('username').value = s.username;
+      if (s.remember) document.getElementById('remember_me').checked = true;
+    } catch (e) {
+      console.error('Failed to load saved credentials:', e);
+    }
+  }
+});
+
+function clearRemember() {
+  localStorage.removeItem('med4me_user');
+  sessionStorage.clear();
+  showMessage('Saved login cleared', 'success');
+  document.getElementById('remember_me').checked = false;
+  document.getElementById('username').value = '';
+  document.getElementById('password').value = '';
+}
+
+function submitAuth(e) {
+  e.preventDefault();
+  clearMessage();
+  
+  const username = document.getElementById('username').value.trim();
+  const password = document.getElementById('password').value;
+  const remember = document.getElementById('remember_me').checked;
+
+  if (!username || !password) { 
+    showMessage('Please enter username and password', 'error'); 
+    return; 
+  }
+
+  if (MODE.current === 'register') {
+    const confirm = document.getElementById('confirm_password').value;
+    if (password !== confirm) { 
+      showMessage('Passwords do not match', 'error'); 
+      return; 
+    }
+    if (password.length < 6) {
+      showMessage('Password must be at least 6 characters', 'error');
+      return;
+    }
+
+    setLoading(true);
+    fetch(`${BASE_URL}/api/register`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, password })
+    })
+    .then(async res => {
+      const data = await res.json().catch(()=>null);
+      setLoading(false);
+      if (res.status === 201 && data && data.success) {
+        handleAuthSuccess(data.username, data.user_id, remember, 'Registration successful! Redirecting...');
+      } else {
+        const msg = data && data.message ? data.message : 'Registration failed';
+        showMessage(msg, 'error');
+      }
+    })
+    .catch(err => { 
+      setLoading(false); 
+      console.error(err); 
+      showMessage('Error connecting to server. Please ensure backend is running on port 5000.', 'error'); 
+    });
+
+  } else {
+    setLoading(true);
+    fetch(`${BASE_URL}/api/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, password })
+    })
+    .then(async res => {
+      const data = await res.json().catch(()=>null);
+      setLoading(false);
+      if (res.ok && data && data.success) {
+        handleAuthSuccess(data.username, data.user_id, remember, 'Login successful! Redirecting...');
+      } else {
+        const msg = data && data.message ? data.message : 'Invalid credentials';
+        showMessage(msg, 'error');
+      }
+    })
+    .catch(err => { 
+      setLoading(false); 
+      console.error(err); 
+      showMessage('Error connecting to server. Please ensure backend is running on port 5000.', 'error'); 
+    });
+  }
+}
+
+function handleAuthSuccess(username, user_id, remember, message) {
+  // Store in session (always)
+  sessionStorage.setItem('doctor', username);
+  sessionStorage.setItem('med4me_user_id', String(user_id));
+
+  // Store in localStorage if "remember me" checked
+  if (remember) {
+    const toSave = { 
+      username, 
+      user_id, 
+      remember: true,
+      saved_at: new Date().toISOString()
+    };
+    localStorage.setItem('med4me_user', JSON.stringify(toSave));
+  } else {
+    localStorage.removeItem('med4me_user');
+  }
+
+  showMessage(message, 'success');
+  
+  // Redirect to chat page
+  setTimeout(() => {
+    window.location.href = 'chatpage.html';
+  }, 700);
+}
+
+function showMessage(txt, type) {
+  const el = document.getElementById('msg');
+  el.textContent = txt;
+  el.className = 'msg ' + (type === 'error' ? 'error' : 'success');
+  el.style.display = 'block';
+}
+
+function clearMessage() {
+  const el = document.getElementById('msg');
+  el.style.display = 'none';
+  el.textContent = '';
+  el.className = 'msg';
+}
+
+function setLoading(on) {
+  const btn = document.getElementById('primary-btn');
+  const inputs = document.querySelectorAll('input');
+  
+  if (on) {
+    btn.disabled = true;
+    inputs.forEach(input => input.disabled = true);
+    btn.textContent = MODE.current === 'register' ? 'Registering...' : 'Logging in...';
+    const spinner = document.createElement('span'); 
+    spinner.className = 'loading';
+    btn.appendChild(spinner);
+  } else {
+    btn.disabled = false;
+    inputs.forEach(input => input.disabled = false);
+    btn.textContent = MODE.current === 'register' ? 'Register' : 'Login';
+    const spinner = btn.querySelector('.loading');
+    if(spinner) spinner.remove();
+  }
+}
+
+// Initialize
+setMode('login');
+</script>
+</body>
+</html>
